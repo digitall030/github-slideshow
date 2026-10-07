@@ -1,0 +1,26 @@
+# Enterprise Hybrid Network Architecture on Microsoft Azure
+
+## Project Overview
+This project simulates migrating a legacy, on-premises enterprise data center infrastructure (modeled after a regional utility provider) into a highly secure, scalable Microsoft Azure cloud environment. Leveraging my **CCNA foundational routing and switching concepts**, I designed and deployed a robust hybrid network topology featuring strict traffic isolation, secure edge perimeters, and role-based access controls.
+
+## Architecture Highlights
+* **Virtual Network (VNet):** Deployed a main VNet (`Corp-Hub-VNet`) utilizing a classless inter-domain routing (CIDR) block of `10.0.0.0/16`.
+* **Micro-Segmentation (Subnets):** Segmented the network architecture into three distinct operational zones to isolate critical assets:
+  * `Frontend-Subnet (10.0.1.0/24)` - Demilitarized zone (DMZ) for public-facing application entry points.
+  * `Backend-Subnet (10.0.2.0/24)` - Private tier for enterprise application logic and internal servers.
+  * `Database-Subnet (10.0.3.0/24)` - Fully isolated data tier completely restricted from direct internet access.
+* **Network Security Groups (NSGs):** Configured stateful firewall rule-sets acting as access control lists (ACLs) to enforce a "Zero Trust" model, blocking all inbound traffic by default and only permitting explicit corporate protocols (SSH/RDP, HTTPS).
+
+## Skills & Technologies Demonstrated
+* **Cloud Infrastructure:** Microsoft Azure Networking, Virtual Machines, Microsoft Entra ID (Active Directory).
+* **Core Networking:** IP Subnetting, OSI Model Layer 3/4 Filtering, Route Tables, VPN Gateways.
+* **Documentation & Governance:** Infrastructure mapping, network topology visualization, and security policy enforcement.
+
+## Implementation Steps & Verification
+1. **IP Schema Design:** Structured the network blocks to prevent overlapping address space with local enterprise offices.
+2. **Resource Provisioning:** Manually deployed resource groups, VNets, and subnet bounds via the Azure Console Portal.
+3. **Security Policy Mapping:** Engineered NSG rules to tightly couple ingress/egress boundaries between the Frontend and Backend tiers.
+4. **Connectivity Validation:** Deployed test virtual machines within isolated subnets to verify correct protocol drops and routing hops.
+
+---
+*Note: This architecture serves as the foundation for upcoming automated provisioning via Infrastructure as Code (Bicep/Terraform).*
